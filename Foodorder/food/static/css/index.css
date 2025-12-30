@@ -1,0 +1,80 @@
+/* ================================
+   Global Improvements
+================================ */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f8f9fa;
+}
+
+/* ================================
+   Hero Section
+================================ */
+section.bg-dark {
+    background: linear-gradient(
+        rgba(0, 0, 0, 0.75),
+        rgba(0, 0, 0, 0.75)
+    ),
+    url("https://source.unsplash.com/1600x900/?food,restaurant") center/cover no-repeat;
+}
+
+section.bg-dark h1 span {
+    color: #ffc107;
+}
+
+section.bg-dark p {
+    color: #e0e0e0;
+}
+
+/* ================================
+   Featured Dishes
+================================ */
+.card {
+    border: none;
+    border-radius: 12px;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+}
+
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+}
+
+/* ================================
+   Buttons
+================================ */
+.btn-outline-warning {
+    border-width: 2px;
+    font-weight: 600;
+}
+
+.btn-outline-warning:hover {
+    background-color: #ffc107;
+    color: #000;
+}
+
+/* ================================
+   Price Text
+================================ */
+.text-success {
+    font-size: 1.1rem;
+}
+
+/* ================================
+   Responsive Fixes
+================================ */
+@media (max-width: 768px) {
+    .card-img-top {
+        height: 180px;
+    }
+
+    section.bg-dark h1 {
+        font-size: 2rem;
+    }
+}

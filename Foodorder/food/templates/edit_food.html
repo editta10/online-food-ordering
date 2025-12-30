@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+
+{% block title %}Edit Food | Admin{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid mt-4 pt-3">
+    <div class="row">
+
+        <!-- LEFT SIDEBAR -->
+        <div class="col-md-3 col-lg-2 bg-dark text-light min-vh-100 p-0">
+            <div class="p-3 border-bottom border-secondary">
+                <h5 class="text-warning fw-bold mb-0">👑 Admin Panel</h5>
+                <small class="text-muted">HungerHub</small>
+            </div>
+
+            <ul class="nav flex-column mt-2">
+                <li class="nav-item">
+                    <a class="nav-link text-light" href="{% url 'admin_dashboard' %}">
+                        📊 Dashboard
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-light" href="{% url 'view_foods' %}">
+                        📋 View Foods
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- RIGHT CONTENT -->
+        <div class="col-md-9 col-lg-10 p-4">
+
+            <h3 class="fw-bold mb-4">Edit Food Item</h3>
+
+            <div class="card shadow-sm">
+                <div class="card-body">
+
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+
+                        <div class="mb-3">
+                            <label>Food Name</label>
+                            <input type="text" name="name"
+                                   value="{{ food.name }}"
+                                   class="form-control" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label>Category</label>
+                            <select name="category" class="form-control">
+                                {% for c in categories %}
+                                    <option value="{{ c.id }}"
+                                        {% if c.id == food.category.id %}selected{% endif %}>
+                                        {{ c.name }}
+                                    </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label>Restaurant</label>
+                            <select name="restaurant" class="form-control">
+                                {% for r in restaurants %}
+                                    <option value="{{ r.id }}"
+                                        {% if r.id == food.restaurant.id %}selected{% endif %}>
+                                        {{ r.name }}
+                                    </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label>Description</label>
+                            <textarea name="description"
+                                      class="form-control"
+                                      rows="3">{{ food.description }}</textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label>Price</label>
+                            <input type="number" step="0.01"
+                                   name="price"
+                                   value="{{ food.price }}"
+                                   class="form-control">
+                        </div>
+
+                        <div class="form-check mb-3">
+                            <input type="checkbox"
+                                   name="is_available"
+                                   class="form-check-input"
+                                   {% if food.is_available %}checked{% endif %}>
+                            <label class="form-check-label">
+                                Available
+                            </label>
+                        </div>
+
+                        <div class="mb-3">
+                            <label>Change Image (optional)</label>
+                            <input type="file" name="image" class="form-control">
+                        </div>
+
+                        <button class="btn btn-warning fw-bold">
+                            Update Food
+                        </button>
+
+                        <a href="{% url 'view_foods' %}"
+                           class="btn btn-secondary ms-2">
+                            Cancel
+                        </a>
+
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

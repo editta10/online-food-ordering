@@ -1,0 +1,144 @@
+{% extends "base.html" %}
+
+{% block title %}Admin Dashboard | HungerHub{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid mt-4 pt-3">
+    <div class="row">
+
+        <!-- ================= LEFT SIDEBAR ================= -->
+        <div class="col-md-3 col-lg-2 bg-dark text-light min-vh-100 p-0">
+
+            <div class="p-3 border-bottom border-secondary">
+                <h5 class="text-warning fw-bold mb-0">👑 Admin Panel</h5>
+                <small class="text-muted">HungerHub</small>
+            </div>
+
+            <ul class="nav flex-column mt-2">
+
+                <li class="nav-item">
+                    <a class="nav-link text-light fw-semibold bg-warning text-dark"
+                       href="{% url 'admin_dashboard' %}">
+                        📊 Dashboard
+                    </a>
+                </li>
+
+                <li class="nav-item mt-2 px-3 text-muted small">
+                    FOOD MANAGEMENT
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link text-light" href="{% url 'add_food' %}">
+                        ➕ Add Food
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link text-light" href="{% url 'view_foods' %}">
+                        📋 View Foods
+                    </a>
+
+                </li>
+
+                <li class="nav-item mt-2 px-3 text-muted small">
+                    CATEGORY
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link text-light" href="{% url 'add_category' %}">
+                        ➕ Add Category
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link text-light" href="{% url 'view_categories' %}">
+                        📋 View Categories
+                    </a>
+                </li>
+
+                <li class="nav-item mt-2 px-3 text-muted small">
+                    RESTAURANTS
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link text-light" href="{% url 'add_restaurant' %}">
+                        ➕ Add Restaurant
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link text-light" href="{% url 'view_restaurants' %}">
+                        📋 View Restaurants
+                    </a>
+                </li>
+
+                <li class="nav-item mt-2 px-3 text-muted small">
+                    OTHERS
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link text-light" href="{% url 'admin_orders' %}">
+                        📦 Orders
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link text-light" href="{% url 'admin_users' %}">
+                        👥 Users
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+
+        <!-- ================= RIGHT CONTENT ================= -->
+        <div class="col-md-9 col-lg-10 p-4">
+
+            <h3 class="fw-bold mb-4">Admin Dashboard</h3>
+
+            <div class="row g-4">
+
+                <div class="col-md-3">
+                    <div class="card shadow-sm text-center">
+                        <div class="card-body">
+                            <h6 class="text-muted">Food Items</h6>
+                            <h3 class="fw-bold">{{ food_count }}</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="card shadow-sm text-center">
+                        <div class="card-body">
+                            <h6 class="text-muted">Categories</h6>
+                            <h3 class="fw-bold">{{ category_count }}</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="card shadow-sm text-center">
+                        <div class="card-body">
+                            <h6 class="text-muted">Restaurants</h6>
+                            <h3 class="fw-bold">{{ restaurant_count }}</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="card shadow-sm text-center">
+                        <div class="card-body">
+                            <h6 class="text-muted">Users</h6>
+                            <h3 class="fw-bold">{{ user_count }}</h3>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

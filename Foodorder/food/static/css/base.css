@@ -1,0 +1,65 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(to right, #ff7e5f, #feb47b);
+    min-height: 100vh;
+    margin: 0;
+}
+
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.8rem;
+}
+
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+}
+
+.hero h1 {
+    font-size: 4rem;
+    font-weight: 700;
+}
+
+.hero .lead {
+    font-size: 1.5rem;
+}
+
+.food-card {
+    transition: all 0.3s ease;
+    border: none;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.food-card:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.food-card img {
+    height: 220px;
+    object-fit: cover;
+}
+
+.food-card .card-body {
+    background-color: #fff;
+}
+
+footer {
+    background-color: #222;
+    color: #aaa;
+    padding: 40px 0 20px;
+}
+
+footer a {
+    color: #feb47b;
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: #ff7e5f;
+}

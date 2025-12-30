@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+
+{% block title %}View Foods | Admin{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid mt-4 pt-3">
+    <div class="row">
+
+        <!-- LEFT SIDEBAR (same as admin dashboard) -->
+        <div class="col-md-3 col-lg-2 bg-dark text-light min-vh-100 p-0">
+            <div class="p-3 border-bottom border-secondary">
+                <h5 class="text-warning fw-bold mb-0">👑 Admin Panel</h5>
+                <small class="text-muted">HungerHub</small>
+            </div>
+
+            <ul class="nav flex-column mt-2">
+                <li class="nav-item">
+                    <a class="nav-link text-light" href="{% url 'admin_dashboard' %}">
+                        📊 Dashboard
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link text-light" href="{% url 'add_food' %}">
+                        ➕ Add Food
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link text-warning fw-semibold bg-dark" href="{% url 'view_foods' %}">
+                        📋 View Foods
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- RIGHT CONTENT -->
+        <div class="col-md-9 col-lg-10 p-4">
+
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h3 class="fw-bold">Food Items</h3>
+                <a href="{% url 'add_food' %}" class="btn btn-warning fw-bold">
+                    ➕ Add New Food
+                </a>
+            </div>
+
+            {% if foods %}
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover align-middle">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Image</th>
+                                <th>Name</th>
+                                <th>Category</th>
+                                <th>Restaurant</th>
+                                <th>Price</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for food in foods %}
+                                <tr>
+                                    <td width="90">
+                                        <img src="{{ food.image.url }}"
+                                             class="img-fluid rounded"
+                                             style="height:60px; object-fit:cover;">
+                                    </td>
+                                    <td>{{ food.name }}</td>
+                                    <td>{{ food.category.name }}</td>
+                                    <td>{{ food.restaurant.name }}</td>
+                                    <td>₹{{ food.price }}</td>
+                                    <td>
+                                        {% if food.is_available %}
+                                            <span class="badge bg-success">Available</span>
+                                        {% else %}
+                                            <span class="badge bg-secondary">Unavailable</span>
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        <a href="{% url 'edit_food' food.id %}"
+                                        class="btn btn-sm btn-primary">
+                                            Edit
+                                        </a>
+
+                                        <a href="{% url 'delete_food' food.id %}"
+                                            class="btn btn-sm btn-danger"
+                                            onclick="return confirm('Are you sure you want to delete this food item?');">
+                                                Delete
+                                            </a>
+
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% else %}
+                <div class="alert alert-info">
+                    No food items found.
+                </div>
+            {% endif %}
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}
